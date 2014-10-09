@@ -6,13 +6,11 @@
 #
 # All rights reserved - Do Not Redistribute
 
-package "apache2" do
+package 'apache2' do
   action :install
 end
 
-file "/tmp/something" do
-#  punter "root"
+# punter 'root'
+file '/tmp/something' do
   action :create
 end
-
-
