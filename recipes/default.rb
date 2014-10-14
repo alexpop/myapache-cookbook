@@ -6,7 +6,7 @@
 #
 # All rights reserved - Do Not Redistribute
 
-package 'apache2' do
+package 'apache2'
   action :install
 end
 
