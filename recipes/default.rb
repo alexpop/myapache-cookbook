@@ -6,11 +6,12 @@
 #
 # All rights reserved - Do Not Redistribute
 
-package 'apache2' do
+package node['myapache-cookbook']['package'] do
   action :install
 end
 
-# punter 'root'
-file '/tmp/something' do
+file '/var/www/index.html' do
+  content "<h1>Hello #{node['myapache-cookbook']['name']}</h1>"
+  mode '0644'
   action :create
 end
