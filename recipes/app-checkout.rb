@@ -11,7 +11,7 @@ package 'git' do
 end
 
 git node['myapache-cookbook']['doc-root'] do
-  repository node['myapache-cookbook']['git-rep']
-  revision 'master'
+  repository node['myapache-cookbook']['git-repo']
+  revision node['myapache-cookbook']['git-revision']
   action :sync
 end
