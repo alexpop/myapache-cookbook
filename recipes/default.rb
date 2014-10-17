@@ -10,8 +10,6 @@ package node['myapache-cookbook']['package'] do
   action :install
 end
 
-file '/var/www/html/index.html' do
-  content "<h2>Hello #{node['myapache-cookbook']['name']}</h2>"
-  mode '0644'
-  action :create
+service node['myapache-cookbook']['package'] do
+  action [:enable, :start]
 end
