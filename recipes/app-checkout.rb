@@ -27,17 +27,17 @@ search('files', '*:*').each do |file|
 end
 
 # Get the app version from VERSION.txt and add it to the node data
-ruby_block "Retrieve app version" do
-	block do
+ruby_block 'Retrieve app version' do
+  block do
     version = File.open("#{node['myapache-cookbook']['doc-root']}/VERSION.txt").readline.chomp
-		node.set['myapache-cookbook']['app-ver'] = version
+    node.set['myapache-cookbook']['app-ver'] = version
   end
-  only_if { File.exists?("#{node['myapache-cookbook']['doc-root']}/VERSION.txt") }
+  only_if { File.exist?("#{node['myapache-cookbook']['doc-root']}/VERSION.txt") }
 end
-   
+
 # Pass the app version to the file resource in the compile phase using lazy
-file "/tmp/app-ver.txt" do
-  owner "root"
-  group "root"
+file '/tmp/app-ver.txt' do
+  owner 'root'
+  group 'root'
   content lazy { "Parsed version: #{node['myapache-cookbook']['app-ver']}" }
 end

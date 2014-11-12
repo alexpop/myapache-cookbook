@@ -14,6 +14,6 @@ service node['myapache-cookbook']['package'] do
   action [:enable, :start]
 end
 
-service "iptables" do
+service 'iptables' do
   action [:disable, :stop]
 end
