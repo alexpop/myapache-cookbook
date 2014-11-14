@@ -10,7 +10,9 @@ platforms:
       box: learningchef/centos65
       box_url: learningchef/centos65
       network:
-      - ["forwarded_port", {guest: 80, host: 8888}]
+      - ["forwarded_port", {host: 8880, guest: 80}]
+      - ["forwarded_port", {host: 8443, guest: 443}]
+      - ["private_network", {ip: "10.10.10.40"}]
 
 suites:
   - name: default
