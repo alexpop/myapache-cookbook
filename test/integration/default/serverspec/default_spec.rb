@@ -1,7 +1,5 @@
 require 'serverspec'
-#require_relative '../../../kitchen/data/spec_helper'
 
-# Required by serverspec
 set :backend, :exec
 
 describe package('httpd'), :if => os[:family] == 'redhat' do
@@ -27,5 +25,5 @@ describe port(80) do
 end
 
 describe command('apachectl -S') do
-  its(:stdout) { should match /Syntax OK/ }
+  its(:stdout) { should match /^Syntax OK/ }
 end
