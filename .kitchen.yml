@@ -3,16 +3,17 @@ driver:
 
 provisioner:
   name: chef_zero
+  chef_omnibus_url: file:///kits/install_chef_rpm.sh
 
 platforms:
-  - name: centos65
+  - name: centos6
     driver:
-      box: learningchef/centos65
-      box_url: learningchef/centos65
+      box: centos66
       network:
       - ["forwarded_port", {host: 8880, guest: 80}]
-      - ["forwarded_port", {host: 8443, guest: 443}]
       - ["private_network", {ip: "10.10.10.40"}]
+      synced_folders:
+      - ["/Users/apop/chef-kits", "/kits", "disabled: false"]
 
 suites:
   - name: default
