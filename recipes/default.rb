@@ -6,6 +6,8 @@
 #
 # All rights reserved - Do Not Redistribute
 
+log "*** Time in epoch is now: #{lib_epoch}"
+
 package node['myapache-cookbook']['package'] do
   action :install
 end
