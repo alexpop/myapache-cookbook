@@ -3,12 +3,14 @@ driver:
 
 provisioner:
   name: chef_zero
-  chef_omnibus_url: file:///kits/install_chef_rpm.sh
+#  require_chef_omnibus: true
+#  chef_omnibus_url: file:///kits/install_chef_rpm.sh
 
 platforms:
   - name: centos6
     driver:
       box: centos66
+      box_url: file:///Users/apop/chef-images/centos6-6.box
       network:
       - ["forwarded_port", {host: 8880, guest: 80}]
       - ["private_network", {ip: "10.10.10.40"}]

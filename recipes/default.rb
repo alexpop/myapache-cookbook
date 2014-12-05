@@ -6,13 +6,20 @@
 #
 # All rights reserved - Do Not Redistribute
 
-log "*** Time in epoch is now: #{lib_epoch}"
+log "*** Time in epoch is: #{lib_epoch}"
 
-package node['myapache-cookbook']['package'] do
+case node['platform_family']
+when 'debian'
+  package_name = 'apache2'
+when 'rhel'
+  package_name = 'httpd'
+end
+
+package package_name do
   action :install
 end
 
-service node['myapache-cookbook']['package'] do
+service package_name do
   action [:enable, :start]
 end
 
