@@ -3,8 +3,11 @@ driver:
 
 provisioner:
   name: chef_zero
-#  require_chef_omnibus: true
-#  chef_omnibus_url: file:///kits/install_chef_rpm.sh
+  # Download latest stable chef-client using the install.sh script
+  # require_chef_omnibus: true
+
+  # Use the local chef-client rpm specified in install_chef_rpm.sh: 
+  chef_omnibus_url: file:///kits/install_chef_rpm.sh
 
 platforms:
   - name: centos6
