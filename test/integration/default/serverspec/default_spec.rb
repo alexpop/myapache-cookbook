@@ -27,3 +27,12 @@ end
 describe command('apachectl -S') do
   its(:stdout) { should match /^Syntax OK/ }
 end
+
+describe command('chkconfig --list iptables') do
+  its(:stdout) { should_not match /^iptables.+:on/ }
+end
+
+describe service('iptables') do
+  it { should_not be_enabled }
+  it { should_not be_running }
+end

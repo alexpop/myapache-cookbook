@@ -7,7 +7,7 @@ provisioner:
   # require_chef_omnibus: true
 
   # Use the local chef-client rpm specified in install_chef_rpm.sh: 
-  chef_omnibus_url: file:///kits/install_chef_rpm.sh
+  chef_omnibus_url: file:///mnt/share/install_chef_rpm.sh
 
 platforms:
   - name: centos6
@@ -15,10 +15,12 @@ platforms:
       box: centos66
       box_url: file:///Users/apop/chef-images/centos6-6.box
       network:
-      - ["forwarded_port", {host: 8880, guest: 80}]
-      - ["private_network", {ip: "10.10.10.40"}]
+      - ["private_network", {ip: "192.168.56.40"}]
       synced_folders:
-      - ["/Users/apop/chef-kits", "/kits", "disabled: false"]
+      - ["/Users/apop/chef-kits", "/mnt/share", "disabled: false"]
+      customize:
+        cpus: 1
+        memory: 1024
 
 suites:
   - name: default
