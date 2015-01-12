@@ -1,3 +1,6 @@
+# Kitche+Vagrant doc: https://github.com/test-kitchen/kitchen-vagrant/blob/master/README.md
+# .kitchen.yml doc: 
+
 driver:
   name: vagrant
 
@@ -5,6 +8,7 @@ provisioner:
   name: chef_zero
   # Download latest stable chef-client using the install.sh script
   # require_chef_omnibus: true
+  # require_chef_omnibus: 12.0.3-1
 
   # Use the local chef-client rpm specified in install_chef_rpm.sh: 
   chef_omnibus_url: file:///mnt/share/install_chef_rpm.sh
@@ -14,8 +18,10 @@ platforms:
     driver:
       box: centos66
       box_url: file:///Users/apop/chef-images/centos6-6.box
+      # Use the default host-only network along the NAT one. Makes life easier
       network:
       - ["private_network", {ip: "192.168.56.40"}]
+      # Mount local /Users/apop/chef-kits folder as /mnt/share on the VM  
       synced_folders:
       - ["/Users/apop/chef-kits", "/mnt/share", "disabled: false"]
       customize:
