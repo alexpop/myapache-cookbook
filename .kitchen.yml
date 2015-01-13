@@ -35,3 +35,8 @@ suites:
       - recipe[myapache-cookbook::default]
       - recipe[myapache-cookbook::app-checkout]
     attributes:
+      myapache-cookbook:
+        git-repo: https://github.com/alexpop/myapache-app
+        git-revision: master
+        doc-root: /var/www/html
+
