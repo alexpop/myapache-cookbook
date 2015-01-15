@@ -9,7 +9,7 @@ log '*** Hello from myapache-cookbook::ssl'
 
 # Create the directory during compile time to be available for the file resource
 directory '/etc/chef/' do
-	mode '0700'
+  mode '0700'
   action :nothing
 end.run_action(:create)
 
@@ -26,16 +26,16 @@ secret_path = Chef::EncryptedDataBagItem.load_secret('/etc/chef/encrypted_data_b
 ssl = Chef::EncryptedDataBagItem.load(node['data_bag']['name'], node['data_bag']['item'], secret_path)
 
 directory '/etc/ssl/' do
-	mode '0700'
-	action :create
+  mode '0700'
+  action :create
 end
 
 # Create the certificate using the sensitive option to avoid logging the content
 file '/etc/ssl/certificate.crt' do
-	content ssl['cert']
+  content ssl['cert']
   mode '0600'
   sensitive true
-	action :create
+  action :create
 end
 
 file '/etc/ssl/certificate.key' do
