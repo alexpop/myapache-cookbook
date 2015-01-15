@@ -31,13 +31,17 @@ platforms:
 
 suites:
   - name: default
-    data_bags_path: "test/integration/data_bags" 
+    data_bags_path: test/integration/data_bags
     run_list:
       - recipe[myapache-cookbook::default]
+      - recipe[myapache-cookbook::ssl]
       - recipe[myapache-cookbook::app-checkout]
     attributes:
       myapache-cookbook:
         git-repo: https://github.com/alexpop/myhtml-app
         git-revision: release-1
         doc-root: /var/www/html
-
+      data_bag:
+        name: secure
+        item: ssl_opschef.tv
+        secret: superSECRETencryptionKEY
