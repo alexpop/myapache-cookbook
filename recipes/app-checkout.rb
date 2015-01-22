@@ -18,6 +18,14 @@ git node['myapache-cookbook']['doc-root'] do
   action :sync
 end
 
+bash 'dir git folder' do
+  flags '-ex'
+  code <<-EOH
+    ls -la /var/www/html/
+    echo "*** Hello World"
+  EOH
+end
+
 # Iterate through all items is the 'files' data bag
 search('files', '*:*').each do |file|
   file "#{node['myapache-cookbook']['doc-root']}/#{file['id']}" do

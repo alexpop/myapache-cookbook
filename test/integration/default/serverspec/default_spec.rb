@@ -2,20 +2,15 @@ require 'serverspec'
 
 set :backend, :exec
 
-describe package('httpd'), :if => os[:family] == 'redhat' do
+describe package('httpd'), if: os[:family] == 'redhat' do
   it { should be_installed }
 end
 
-describe package('apache2'), :if => os[:family] == 'ubuntu' do
-  it { should be_installed }
-end
+#describe package('tree') do
+#  it { should be_installed }
+#end
 
-describe service('httpd'), :if => os[:family] == 'redhat' do
-  it { should be_enabled }
-  it { should be_running }
-end
-
-describe service('apache2'), :if => os[:family] == 'ubuntu' do
+describe service('httpd'), if: os[:family] == 'redhat' do
   it { should be_enabled }
   it { should be_running }
 end
@@ -36,3 +31,5 @@ describe service('iptables') do
   it { should_not be_enabled }
   it { should_not be_running }
 end
+
+

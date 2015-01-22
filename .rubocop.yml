@@ -3,3 +3,7 @@ LineLength:
 
 Style/FileName:
   Enabled: false
+
+AllCops:
+  Exclude:
+    - 'test/integration/default/**/*'
