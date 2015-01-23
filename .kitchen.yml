@@ -13,6 +13,8 @@ provisioner:
 
   # Use the local chef-client rpm specified in install_chef_rpm.sh: 
   chef_omnibus_url: file:///mnt/share/install_chef_rpm.sh
+  # roles_path: '../chef-repo/roles'
+  # environments_path: '../chef-repo/environments'
   
 platforms:
   - name: centos6

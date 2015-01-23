@@ -27,6 +27,9 @@ service 'iptables' do
   action [:disable, :stop]
 end
 
+package "tree" do
+	action :install
+end
 
 
 

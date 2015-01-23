@@ -49,3 +49,4 @@ file '/tmp/app-ver.txt' do
   group 'root'
   content lazy { "Parsed version: #{node['myapache-cookbook']['app-ver']}" }
 end
+

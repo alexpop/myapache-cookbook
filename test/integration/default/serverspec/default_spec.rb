@@ -6,9 +6,9 @@ describe package('httpd'), if: os[:family] == 'redhat' do
   it { should be_installed }
 end
 
-#describe package('tree') do
-#  it { should be_installed }
-#end
+describe package('tree') do
+  it { should be_installed }
+end
 
 describe service('httpd'), if: os[:family] == 'redhat' do
   it { should be_enabled }
@@ -23,7 +23,8 @@ describe command('apachectl -S') do
   its(:stdout) { should match /^Syntax OK/ }
 end
 
-describe command('chkconfig --list iptables') do
+iptables_command='chkconfig --list iptables'
+describe command(iptables_command) do
   its(:stdout) { should_not match /^iptables.+:on/ }
 end
 
