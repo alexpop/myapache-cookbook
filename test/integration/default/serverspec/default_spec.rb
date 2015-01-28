@@ -33,4 +33,18 @@ describe service('iptables') do
   it { should_not be_running }
 end
 
+describe file('/etc/passwd') do
+  it { should contain 'root' }
+end
 
+describe 'File checks' do
+  let :pass_file do
+    file('/etc/passwd')
+  end
+	it { expect(pass_file).to be_a_file }
+  it { expect(pass_file.content).to match /vagrant/ }
+
+	it 'it contains root' do
+    expect(pass_file.content).to match /root/
+  end
+end
