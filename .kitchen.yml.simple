@@ -6,21 +6,13 @@ driver:
 
 provisioner:
   name: chef_zero
-  # Download latest stable chef-client using the install.sh script
-  # require_chef_omnibus: true
   # Download and install this exact version of chef-client
-  # require_chef_omnibus: 12.0.3
-
-  # Use the local chef-client rpm specified in install_chef_rpm.sh: 
-  chef_omnibus_url: file:///mnt/share/install_chef_rpm.sh
-  # roles_path: '../chef-repo/roles'
-  environments_path: '../chef-repo/environments'
+  require_chef_omnibus: 12.0.3
   
 platforms:
   - name: centos6
     driver:
       box: centos66
-      box_url: file:///Users/apop/chef-images/centos6-6.box
       # Use the default host-only network along the NAT one. Makes life easier
       network:
       - ["private_network", {ip: "192.168.56.40"}]
@@ -32,29 +24,7 @@ platforms:
         memory: 1024
 
 suites:
-  - name: test
-    provisioner:
-      client_rb:
-        environment: test_blog
-    data_bags_path: test/integration/data_bags
-    run_list:
-      - recipe[myapache-cookbook::default]
-      - recipe[myapache-cookbook::ssl]
-      - recipe[myapache-cookbook::app-checkout]
-    attributes:
-      myapache-cookbook:
-        git-repo: https://github.com/alexpop/myhtml-app
-        git-revision: release-3
-        doc-root: /var/www/html
-      data_bag:
-        name: secure
-        item: ssl_opschef.tv
-        secret: superSECRETencryptionKEY
-
-  - name: dev
-    provisioner:
-      client_rb:
-        environment: dev_blog
+  - name: default
     data_bags_path: test/integration/data_bags
     run_list:
       - recipe[myapache-cookbook::default]

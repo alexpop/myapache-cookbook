@@ -2,9 +2,11 @@
 # Cookbook Name:: myapache-cookbook
 # Recipe:: default
 #
-# Copyright 2014, YOUR_COMPANY_NAME
+# Copyright 2014, Great Blogs Ltd
 #
 # All rights reserved - Do Not Redistribute
+
+log "*** Deploying myapache-cookbook::default in environment #{node.chef_environment}"
 
 log "*** Time in epoch is: #{lib_epoch}"
 
