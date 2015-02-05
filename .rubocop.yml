@@ -6,4 +6,4 @@ Style/FileName:
 
 AllCops:
   Exclude:
-    - 'test/integration/default/**/*'
+    - 'test/integration/*'
