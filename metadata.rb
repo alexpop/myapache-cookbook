@@ -8,3 +8,9 @@ version '0.2.13'
 
 recipe 'myapache-cookbook::default', 'Default recipe to install Apache'
 recipe 'myapache-cookbook::app-checkout', 'Default recipe to deploy public git code'
+
+depends 'git'
+
+%w{ redhat centos fedora oracle }.each do |os|
+  supports os
+end

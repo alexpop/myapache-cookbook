@@ -34,7 +34,7 @@ describe service('iptables') do
 end
 
 describe file('/etc/passwd') do
-  it { should contain 'root' }
+  it { should contain node['platform'] }
 end
 
 describe 'File checks' do

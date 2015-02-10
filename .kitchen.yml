@@ -15,6 +15,7 @@ provisioner:
   chef_omnibus_url: file:///mnt/share/install_chef_rpm.sh
   # roles_path: '../chef-repo/roles'
   environments_path: '../chef-repo/environments'
+  data_bags_path: 'test/integration/data_bags'
   
 platforms:
   - name: centos6
@@ -36,7 +37,6 @@ suites:
     provisioner:
       client_rb:
         environment: test_blog
-    data_bags_path: test/integration/data_bags
     run_list:
       - recipe[myapache-cookbook::default]
       - recipe[myapache-cookbook::ssl]
@@ -55,7 +55,6 @@ suites:
     provisioner:
       client_rb:
         environment: dev_blog
-    data_bags_path: test/integration/data_bags
     run_list:
       - recipe[myapache-cookbook::default]
       - recipe[myapache-cookbook::ssl]
