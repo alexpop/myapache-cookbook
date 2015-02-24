@@ -34,7 +34,7 @@ describe service('iptables') do
 end
 
 describe file('/etc/passwd') do
-  it { should contain node['platform'] }
+  it { should contain 'apache' }
 end
 
 describe 'File checks' do
@@ -48,3 +48,21 @@ describe 'File checks' do
     expect(pass_file.content).to match /root/
   end
 end
+
+@commands = [{ 'to_run' => "cat /etc/passwd", 
+               'to_expect' => /^apache.+nologin$/ },
+             { 'to_run' => "cat /etc/passwd", 
+               'to_expect' => /^vagrant.+bash$/ },
+             { 'to_run' => "/tmp/c", 
+               'to_expect' => /ctest/ }]
+
+@commands.each do |command|
+  describe command(command['to_run']) do
+    its(:stdout) { should match command['to_expect'] }
+  end
+end
+
+#oracle_command='echo "select 1 from dual;" | sqlplus / as sysdba'
+#describe command(oracle_command) do
+#  its(:stdout) { should match /^1 rows selected\./ }
+#end

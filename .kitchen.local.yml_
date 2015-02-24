@@ -35,7 +35,7 @@ platforms:
         memory: 1024
 
 suites:
-  - name: test
+  - name: test2
     provisioner:
       client_rb:
         environment: test_blog
@@ -53,7 +53,7 @@ suites:
         item: ssl_opschef.tv
         secret: superSECRETencryptionKEY
 
-  - name: dev
+  - name: dev2
     provisioner:
       client_rb:
         environment: dev_blog

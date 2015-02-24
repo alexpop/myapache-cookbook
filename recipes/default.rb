@@ -32,3 +32,7 @@ end
 package "tree" do
 	action :install
 end
+
+directory "/tmp/test" do
+  action :create
+end
