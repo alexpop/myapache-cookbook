@@ -53,8 +53,8 @@ end
                'to_expect' => /^apache.+nologin$/ },
              { 'to_run' => "cat /etc/passwd", 
                'to_expect' => /^vagrant.+bash$/ },
-             { 'to_run' => "/tmp/c", 
-               'to_expect' => /ctest/ }]
+             { 'to_run' => "ifconfig", 
+               'to_expect' => /^eth1.+Ethernet/ }]
 
 @commands.each do |command|
   describe command(command['to_run']) do
