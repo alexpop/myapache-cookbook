@@ -1,3 +1,10 @@
+#
+# Cookbook Name:: myapache-cookbook
+# Recipe:: audit_recipe
+#
+
+log "*** In audit_recipe!"
+
 control_group "Apache Audit" do
 
   control "httpd package" do

@@ -35,7 +35,8 @@ suites:
     run_list:
       - recipe[myapache-cookbook::default]
       - recipe[myapache-cookbook::ssl]
-      - recipe[myapache-cookbook::app-checkout]
+      - recipe[myapache-cookbook::app_checkout]
+      - recipe[myapache-cookbook::audit_recipe]
     attributes:
       myapache-cookbook:
         git-repo: https://github.com/alexpop/myhtml-app

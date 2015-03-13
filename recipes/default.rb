@@ -18,7 +18,7 @@ when 'rhel'
 end
 
 package "#{package_name}" do
-  action :install
+  action :upgrade
 end
 
 service "#{package_name}" do
@@ -30,7 +30,7 @@ service 'iptables' do
 end
 
 package "tree" do
-	action :install
+	action :upgrade
 end
 
 directory "/tmp/test" do

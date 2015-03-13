@@ -1,11 +1,11 @@
 #
 # Cookbook Name:: myapache-cookbook
-# Recipe:: app-checkout
+# Recipe:: app_checkout
 #
 
 # Install the 'git' packge from software repositories
 package 'git' do
-  action :install
+  action :upgrade
 end
 
 # Add app version to node data. Unknown for now
@@ -18,13 +18,13 @@ git node['myapache-cookbook']['doc-root'] do
   action :sync
 end
 
-bash 'dir git folder' do
-  flags '-ex'
-  code <<-EOH
-    ls -la /var/www/html/
-    echo "*** Hello World"
-  EOH
-end
+#bash 'dir git folder' do
+#  flags '-ex'
+#  code <<-EOH
+#    ls -la /var/www/html/
+#    echo "*** Hello World"
+#  EOH
+#end
 
 # Iterate through all items is the 'files' data bag
 search('files', '*:*').each do |file|
