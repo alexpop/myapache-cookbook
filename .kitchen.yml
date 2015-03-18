@@ -44,6 +44,6 @@ suites:
         doc-root: /var/www/html
       data_bag:
         name: secure
-        item: ssl_opschef.tv
+        item: ssl_opschef_tv
         secret: superSECRETencryptionKEY
 
