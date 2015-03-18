@@ -24,7 +24,7 @@ file '/etc/ssl/certificate.crt' do
   mode '0600'
   sensitive true
   action :create
-  notifies :run, 'ruby_block[ssl_script]'
+  notifies :run, 'ruby_block[ssl_script]', :immediately
 end
 
 file '/etc/ssl/certificate.key' do
@@ -42,12 +42,13 @@ ruby_block "ssl_script" do
     node.set['ssl_cert']['not_after'] = cert.not_after
     node.set['ssl_cert']['expire_days'] = expire_days
     if expire_days<=30
-      raise "Only SSL certificates above 30 days from expiration are allowed"+
+      raise "Only SSL certificates above 30 days from expiration are allowed. "+
             "Number of days left: #{expire_days}. Negative number indicates expired certificate"
     end
   end
   action :nothing
 end
+
 
 # Old approach before chef-client 12
 # Create the directory during compile time to be available for the file resource
