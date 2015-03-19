@@ -43,7 +43,7 @@ suites:
         git-revision: release-1
         doc-root: /var/www/html
       data_bag:
-        name: secure
+        name: ssl
         item: ssl_opschef_tv
         secret: superSECRETencryptionKEY
 
