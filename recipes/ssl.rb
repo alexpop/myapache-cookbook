@@ -39,8 +39,10 @@ ruby_block "ssl_script" do
   block do
     cert = OpenSSL::X509::Certificate.new(File.read('/etc/ssl/certificate.crt'))
     expire_days = ((cert.not_after-Time.now)/86400).to_i
+    # Set attributes to easily search nodes for SSL expiration dates
     node.set['ssl_cert']['not_after'] = cert.not_after
     node.set['ssl_cert']['expire_days'] = expire_days
+    # Fail the recipe to prevent certificate expiration issues
     if expire_days<=30
       raise "Only SSL certificates above 30 days from expiration are allowed. "+
             "Number of days left: #{expire_days}. Negative number indicates expired certificate"
