@@ -10,18 +10,11 @@ log "*** Deploying myapache-cookbook::default in environment #{node.chef_environ
 
 log "*** Time in epoch is: #{lib_epoch}"
 
-case node['platform_family']
-when 'debian'
-  package_name = 'apache2'
-when 'rhel'
-  package_name = 'httpd'
-end
-
-package "#{package_name}" do
+package "httpd" do
   action :upgrade
 end
 
-service "#{package_name}" do
+service "httpd" do
   action [:enable, :start]
 end
 
@@ -36,3 +29,4 @@ end
 directory "/tmp/test" do
   action :create
 end
+

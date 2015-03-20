@@ -2,10 +2,15 @@
 # Cookbook Name:: myapache-cookbook
 # Recipe:: ssl
 #
-# Copyright 2014, Great Websites Inc
+# Copyright 2015, Great Websites Inc
 #
 
 log '*** Hello from myapache-cookbook::ssl'
+
+# array of packages supported only on chef-clinet 12.1.0 or above
+package ['mod_ssl', 'openssl'] do
+  action :upgrade
+end
 
 # data_bag_item is a new core resource as of chef-client 12
 # if the secret is not specified here, it will be looked based on the 'encrypted_data_bag_secret' client.rb option
@@ -25,6 +30,7 @@ file '/etc/ssl/certificate.crt' do
   sensitive true
   action :create
   notifies :run, 'ruby_block[ssl_script]', :immediately
+  notifies :reload, "service[httpd]"
 end
 
 file '/etc/ssl/certificate.key' do
@@ -32,6 +38,7 @@ file '/etc/ssl/certificate.key' do
   mode '0600'
   sensitive true
   action :create
+  notifies :reload, "service[httpd]"
 end
 
 # Only executed when the cert file is created/updated
@@ -49,4 +56,9 @@ ruby_block "ssl_script" do
     end
   end
   action :nothing
+end
+
+service "httpd" do
+  supports :status => true, :restart => true, :reload => true
+  action [:enable, :start]
 end
