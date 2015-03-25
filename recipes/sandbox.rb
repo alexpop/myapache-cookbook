@@ -8,6 +8,6 @@
 log '*** Hello from myapache-cookbook::sandbox'
 
 remote_file '/tmp/logo.svg' do
-  source "https://184.106.28.83/images/logo.svg"
+  source "https://ap-local-core-services.opschef.tv/hook.log"
   action :create
 end
