@@ -30,6 +30,3 @@ directory "/tmp/test" do
   action :create
 end
 
-file "/tmp/wed.txt" do
-	content "aaaaaaaaaaa"
-end

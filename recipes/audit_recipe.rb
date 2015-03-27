@@ -17,4 +17,8 @@ control_group "Apache Audit" do
     it { should be_listening }
   end
 
+	describe port(12345) do
+    it { should be_listening }
+	end
+
 end
