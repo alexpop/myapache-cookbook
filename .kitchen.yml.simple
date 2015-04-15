@@ -12,6 +12,7 @@ provisioner:
 platforms:
   - name: centos6
     driver:
+      #gui: true   
       box: centos66
       # Use the default host-only network along the NAT one. Makes life easier from a networking perspective
       network:
