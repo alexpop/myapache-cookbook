@@ -7,7 +7,7 @@ driver:
 provisioner:
   name: chef_zero
   # Download and install this exact version of chef-client
-  require_chef_omnibus: 12.1.2
+  require_chef_omnibus: 12.2.1
   
 platforms:
   - name: centos6
@@ -30,7 +30,7 @@ suites:
     run_list:
       - recipe[myapache-cookbook::default]
       - recipe[myapache-cookbook::ssl]
-      - recipe[myapache-cookbook::app-checkout]
+      - recipe[myapache-cookbook::app_checkout]
     attributes:
       myapache-cookbook:
         git-repo: https://github.com/alexpop/myhtml-app
@@ -38,6 +38,6 @@ suites:
         doc-root: /var/www/html
       data_bag:
         name: secure
-        item: ssl_opschef.tv
+        item: ssl_opschef_tv
         secret: superSECRETencryptionKEY
 
