@@ -4,6 +4,11 @@
 driver:
   name: vagrant
 
+driver_config:
+  # I don't login often, but when I do, I do it as root
+  username: root
+  password: vagrant
+
 provisioner:
   name: chef_zero
   # Download and install this exact version of chef-client
