@@ -13,9 +13,13 @@ provisioner:
 
   # Use the local chef-client rpm specified in install_chef_rpm.sh: 
   chef_omnibus_url: file:///mnt/share/install_chef_rpm.sh
-  
+
 platforms:
   - name: centos6
+    driver_config:
+      # I don't login often, but when I do, I do it as root
+      username: root
+      password: vagrant
     driver:
       #gui: true
       box: "opscode-centos-6.6"
@@ -49,7 +53,9 @@ suites:
 #      - recipe[myapache-cookbook::ssl]
 #      - recipe[myapache-cookbook::app_checkout]
 #      - recipe[myapache-cookbook::audit_recipe]
-      - recipe[myapache-cookbook::sandbox]
+#      - recipe[myapache-cookbook::sandbox]
+      - recipe[myapache-cookbook::troubleshooting]
+
     attributes:
       myapache-cookbook:
         git-repo: https://github.com/alexpop/myhtml-app

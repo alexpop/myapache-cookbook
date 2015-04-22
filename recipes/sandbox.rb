@@ -12,14 +12,21 @@ log '*** Hello from myapache-cookbook::sandbox'
 #  action :create
 #end
 
+Chef::Log.warn "*** Should show on -l warn"
 
-#if(Chef::Config[:chef_server_url] !~ /\/organizations\//)
-   #Chef::Config[:chef_server_url]+="/organizations/searsil"
-#   node.default['chef_client']['config']['chef_server_url']="#{Chef::Config[:chef_server_url]}/organizations/searsil"
-#end
+# Find all string in the array that contain
+# 'site_ruby/' without a '/' after that
+site_ruby_paths = $LOAD_PATH.grep(/site_ruby\/[^\/]+$/)
+if (site_ruby_paths.empty?)
+  raise "*** Cannot find the site_ruby path, aborting..."
+else
+  site_ruby_path=site_ruby_paths.first
+  Chef::Log.warn "*** site_ruby is at: #{site_ruby_path}"
+end
 
-log "*** Content of Chef::Config is '#{Chef::Config.inspect}'"
+if (Chef::Config[:chef_server_url] !~ /\/organizations\//)
+  log "*** 'organizations' is missing from the url!!!"
+end
 
-
-#config_dir = File.expand_path('..', Config)
+log '*** End of recipe'
 

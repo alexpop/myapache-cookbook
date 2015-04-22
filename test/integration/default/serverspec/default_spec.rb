@@ -56,9 +56,9 @@ end
              { 'to_run' => "ifconfig", 
                'to_expect' => /^eth1.+Ethernet/ }]
 
-@commands.each do |command|
-  describe command(command['to_run']) do
-    its(:stdout) { should match command['to_expect'] }
+@commands.each do |c|
+  describe command(c['to_run']) do
+    its(:stdout) { should match c['to_expect'] }
   end
 end
 
@@ -66,3 +66,10 @@ end
 #describe command(oracle_command) do
 #  its(:stdout) { should match /^1 rows selected\./ }
 #end
+
+describe "My Descriptions" do
+  it 'Directory /etc must exist' do
+    expect('/etc').to be_directory
+  end
+  
+end
