@@ -11,11 +11,8 @@ driver_config:
 
 provisioner:
   name: chef_zero
-  # Download latest stable chef-client using the install.sh script
-  # require_chef_omnibus: true
   # Download and install this exact version of chef-client
-  # require_chef_omnibus: 12.2.0
-
+  require_chef_omnibus: 12.2.1
   # Use the local chef-client rpm specified in install_chef_rpm.sh: 
   chef_omnibus_url: file:///mnt/share/install_chef_rpm.sh
 
