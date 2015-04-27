@@ -3,6 +3,9 @@ default['myapache-cookbook']['doc-root'] = '/var/www/html'
 default['myapache-cookbook']['git-repo'] = 'https://github.com/alexpop/myhtml-app'
 default['myapache-cookbook']['git-revision'] = 'master'
 
+# For Awesome Print gem
+default['myapache-cookbook']['ap_path'] = nil
+
 # For load balancer(ex: haproxy) discovery
 default['myapache-cookbook']['lb_frontend_port'] = '80'
 default['myapache-cookbook']['lb_backend_uri'] = '/'

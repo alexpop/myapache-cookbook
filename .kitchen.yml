@@ -51,16 +51,17 @@ suites:
 #      - recipe[myapache-cookbook::ssl]
 #      - recipe[myapache-cookbook::app_checkout]
 #      - recipe[myapache-cookbook::audit_recipe]
-      - recipe[myapache-cookbook::sandbox]
-#      - recipe[myapache-cookbook::troubleshooting]
+#      - recipe[myapache-cookbook::sandbox]
+      - recipe[myapache-cookbook::troubleshooting]
 
     attributes:
       myapache-cookbook:
         git-repo: https://github.com/alexpop/myhtml-app
         git-revision: release-1
         doc-root: /var/www/html
+        ap_path: /mnt/share/gems/awesome_print-1.6.1.gem
+
       data_bag:
         name: ssl
         item: ssl_opschef_tv
         secret: superSECRETencryptionKEY
-

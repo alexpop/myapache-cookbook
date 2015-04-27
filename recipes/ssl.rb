@@ -29,7 +29,6 @@ file '/etc/ssl/certificate.crt' do
   mode '0600'
   sensitive true
   action :create
-  notifies :run, 'ruby_block[ssl_script]', :immediately
   notifies :reload, "service[httpd]"
 end
 
@@ -55,7 +54,7 @@ ruby_block "ssl_script" do
             "Number of days left: #{expire_days}. Negative number indicates expired certificate"
     end
   end
-  action :nothing
+  action :run
 end
 
 service "httpd" do
