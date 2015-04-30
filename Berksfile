@@ -5,13 +5,14 @@ source 'https://supermarket.chef.io'
 # Look for dependencies in ./metadata.rb
 metadata
 
+# Look for a dependent cookbook in the parent folder
 cookbook 'mydns-cookbook', path: '../mydns-cookbook'
 
 # Specify dependent cookbook. Useful when you don't have a local ./metadata.rb
-# cookbook 'java'
+#cookbook 'java'
 
-# More examples on how to specify the location for dependent cookbook
-# cookbook ‘gitlab', git: ‘https://gitlab.com/gitlab-org/cookbook-gitlab.git'
-# cookbook ‘gitlab', git: ‘https://mygitlab.com/test-org/cookbooks.git'
-# cookbook "jboss", git: "https://github.com/test-org/many_cookbooks.git", rel: "cookbooks/jboss"
-# cookbook 'mediawiki', github: 'millisami/chef-mediawiki'
+# More examples on how to specify the location for dependent cookbooks
+#cookbook ‘gitlab', git: ‘https://gitlab.com/gitlab-org/cookbook-gitlab.git'
+#cookbook ‘gitlab', git: ‘https://mygitlab.com/test-org/cookbooks.git'
+#cookbook "jboss", git: "https://github.com/test-org/many_cookbooks.git", rel: "cookbooks/jboss"
+#cookbook 'mediawiki', github: 'millisami/chef-mediawiki'
