@@ -7,28 +7,26 @@
 
 log '*** Hello from myapache-cookbook::troubleshooting'
 
-ten = 0
-
-chef_gem "pry-byebug" do
-  compile_time true
-end
-require "pry-byebug"
-
-if (node['myapache-cookbook']['ap_path'])
-  chef_gem 'awesome_print' do
-    source node['myapache-cookbook']['ap_path']
-	  compile_time true
+# Avoiding 'kitchen converge' runs
+if(ENV['SUDO_COMMAND'] =~ /chef-client --local-mode/)
+  Chef::Log.warn("Detected kitchen run, skipping 'binding.pry'")
+else
+  if (node['gem']['ap_path'])
+    chef_gem 'awesome_print' do
+      source node['gem']['ap_path']
+      compile_time true
+    end
+    require 'awesome_print'
   end
-  require 'awesome_print'
+  # gem 'pry-byebug' can be used to step through
+
+  require 'pry'
+  binding.pry
 end
 
-require 'pry'
-binding.pry
-
-ten=5+5
 
 if (Chef::Config[:chef_server_url] !~ /\/organizations\//)
-  log "*** 'organizations' is missing from the url!!!"
+  log "*** 'organizations' is missing from the url!"
 end
 
 log '*** End of recipe'

@@ -59,9 +59,9 @@ suites:
         git-repo: https://github.com/alexpop/myhtml-app
         git-revision: release-1
         doc-root: /var/www/html
-        ap_path: /mnt/share/gems/awesome_print-1.6.1.gem
-
       data_bag:
         name: ssl
         item: ssl_opschef_tv
         secret: superSECRETencryptionKEY
+      gem:
+        ap_path: /mnt/share/gems/awesome_print-1.6.1.gem

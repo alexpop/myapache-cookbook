@@ -3,9 +3,6 @@ default['myapache-cookbook']['doc-root'] = '/var/www/html'
 default['myapache-cookbook']['git-repo'] = 'https://github.com/alexpop/myhtml-app'
 default['myapache-cookbook']['git-revision'] = 'master'
 
-# For Awesome Print gem
-default['myapache-cookbook']['ap_path'] = nil
-
 # For load balancer(ex: haproxy) discovery
 default['myapache-cookbook']['lb_frontend_port'] = '80'
 default['myapache-cookbook']['lb_backend_uri'] = '/'
@@ -18,6 +15,9 @@ default['myapache-cookbook']['auth_pass_hash'] = nil
 default['data_bag']['name'] = 'OVERRIDE-ME'
 default['data_bag']['item'] = 'OVERRIDE-ME'
 default['data_bag']['secret'] = 'OVERRIDE-ME'
+
+# For 'binding.pry' troubleshooting
+default['gem']['ap_path'] = nil
 
 
 

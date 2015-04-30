@@ -2,14 +2,16 @@
 source 'https://supermarket.chef.io'
 # If you don't want a source, use a fake one: 'https://localhost:55555'
 
-# Look for dependencies in metadata.rb
+# Look for dependencies in ./metadata.rb
 metadata
 
-# Commented examples on how to specify location for dependent cookbook
+cookbook 'mydns-cookbook', path: '../mydns-cookbook'
+
+# Specify dependent cookbook. Useful when you don't have a local ./metadata.rb
 # cookbook 'java'
-# cookbook 'mediawiki', github: 'millisami/chef-mediawiki'
+
+# More examples on how to specify the location for dependent cookbook
 # cookbook ‘gitlab', git: ‘https://gitlab.com/gitlab-org/cookbook-gitlab.git'
 # cookbook ‘gitlab', git: ‘https://mygitlab.com/test-org/cookbooks.git'
 # cookbook "jboss", git: "https://github.com/test-org/many_cookbooks.git", rel: "cookbooks/jboss"
-
-cookbook 'mydns-cookbook', path: '../mydns-cookbook'
+# cookbook 'mediawiki', github: 'millisami/chef-mediawiki'
