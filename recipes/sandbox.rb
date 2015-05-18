@@ -30,4 +30,17 @@ end
 
 log '*** End of recipe'
 
-asdf
+execute "multi_line_script" do
+  command <<-EOH
+    set -x
+    date > /tmp/date.txt
+    whoami
+    sleep 4
+    pwd
+    date >> /tmp/date.txt
+  EOH
+  timeout 10
+	creates '/tmp/date.txt'
+  action :run
+end
+

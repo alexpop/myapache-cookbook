@@ -19,6 +19,10 @@ describe port(80) do
   it { should be_listening }
 end
 
+describe port(443) do
+  it { should be_listening }
+end
+
 describe command('apachectl -S') do
   its(:stdout) { should match /^Syntax OK/ }
 end
@@ -69,7 +73,7 @@ end
 
 describe "My Descriptions" do
   it 'Directory /etc must exist' do
-    expect('/etc').to be_directory
+    expect('/etc').to be_a_directory
   end
   
 end

@@ -5,7 +5,7 @@ source 'https://supermarket.chef.io'
 # Look for dependencies in ./metadata.rb
 metadata
 
-# Look for a dependent cookbook in the parent folder
+# Use a dependent cookbook from the parent folder
 cookbook 'mydns-cookbook', path: '../mydns-cookbook'
 
 # Specify dependent cookbook. Useful when you don't have a local ./metadata.rb

@@ -6,22 +6,31 @@
 log "*** In audit_recipe!"
 
 control_group "Apache Audit" do
-  describe file('/etc/passwd') do
-    it { should contain 'apache' }
-  end
-
-  control "httpd package" do
+  control "httpd" do
     it "should be installed" do
       expect(package("httpd")).to be_installed
     end
+
+    it "should be running" do
+      expect(service("ntpd")).to be_running
+    end
+
+    it "should be enabled" do
+      expect(service("ntpd")).to be_enabled
+    end
+  end
+
+  it "should be listening" do
+    expect(port(80)).to be_listening
+    expect(port(23)).to be_listening
+  end
+
+	describe file('/etc/passwd') do
+    it { should contain 'apache' }
   end
  
   describe command('apachectl -S') do
     its(:stdout) { should match /^Syntax OK/ }
-  end
-
-  describe port(80) do
-    it { should be_listening }
   end
 end
 
