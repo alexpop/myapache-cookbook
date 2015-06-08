@@ -30,3 +30,6 @@ directory "/tmp/test" do
   action :create
 end
 
+directory "/tmp/bf" do
+	action :create
+end

@@ -1,9 +1,8 @@
 # Kitche+Vagrant doc: https://github.com/test-kitchen/kitchen-vagrant/blob/master/README.md
-# .kitchen.yml doc: 
-# export KITCHEN_LOG='info'
 driver:
   name: vagrant
   #gui: true
+  # Mount local /Users/apop/chef-kits folder as /mnt/share on the VM
   synced_folders:
   - ["/Users/apop/chef-kits", "/mnt/share", "disabled: false"]
   customize:
@@ -34,7 +33,6 @@ platforms:
       # Use the default host-only network along the NAT one. Makes life easier from a networking perspective
       network:
       - ["private_network", {ip: "192.168.56.40"}]
-      # Mount local /Users/apop/chef-kits folder as /mnt/share on the VM  
 
 suites:
   - name: default
@@ -44,7 +42,7 @@ suites:
       - recipe[myapache-cookbook::app_checkout]
 #      - recipe[myapache-cookbook::audit_recipe]
       - recipe[myapache-cookbook::sandbox]
-#      - recipe[myapache-cookbook::troubleshooting]
+      - recipe[myapache-cookbook::troubleshooting]
 
     attributes:
       myapache-cookbook:

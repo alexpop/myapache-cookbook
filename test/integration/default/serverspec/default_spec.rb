@@ -71,9 +71,3 @@ end
 #  its(:stdout) { should match /^1 rows selected\./ }
 #end
 
-describe "My Descriptions" do
-  it 'Directory /etc must exist' do
-    expect('/etc').to be_a_directory
-  end
-  
-end
