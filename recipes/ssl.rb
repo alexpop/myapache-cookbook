@@ -5,8 +5,6 @@
 # Copyright 2015, Great Websites Inc
 #
 
-log '*** Hello from myapache-cookbook::ssl'
-
 # array of packages supported only on chef-clinet 12.1.0 or above
 package ['mod_ssl', 'openssl'] do
   action :upgrade

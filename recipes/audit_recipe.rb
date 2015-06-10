@@ -3,8 +3,6 @@
 # Recipe:: audit_recipe
 #
 
-log "*** In audit_recipe!"
-
 control_group "Apache Audit" do
   control "httpd" do
     it "should be installed" do

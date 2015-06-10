@@ -6,8 +6,6 @@
 #
 # All rights reserved - Do Not Redistribute
 
-log "*** Deploying myapache-cookbook::default in environment #{node.chef_environment}"
-
 log "*** Time in epoch is: #{lib_epoch}"
 
 package "httpd" do

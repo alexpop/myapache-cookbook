@@ -5,8 +5,6 @@
 # Copyright 2015, Great Websites Inc
 #
 
-log '*** Hello from myapache-cookbook::sandbox'
-
 #remote_file '/tmp/logo.svg' do
 #  source "https://ap-local-core-services.opschef.tv/hook.log"
 #  action :create
@@ -25,10 +23,10 @@ else
 end
 
 if (Chef::Config[:chef_server_url] !~ /\/organizations\//)
-  log "*** 'organizations' is missing from the url!!!"
+  Chef::Log.warn("*** 'organizations' is missing from the url!!!")
 end
 
-log '*** End of recipe'
+Chef::Log.warn('*** End of recipe')
 
 execute "multi_line_script" do
   command <<-EOH

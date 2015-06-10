@@ -5,8 +5,6 @@
 # Copyright 2015, Great Websites Inc
 #
 
-log '*** Hello from myapache-cookbook::troubleshooting'
-
 # Avoiding 'kitchen converge' runs
 if(ENV['SUDO_COMMAND'] =~ /chef-client --local-mode/)
   Chef::Log.warn("Detected kitchen run, skipping 'binding.pry'")
@@ -26,8 +24,11 @@ end
 
 
 if (Chef::Config[:chef_server_url] !~ /\/organizations\//)
-  log "*** 'organizations' is missing from the url!"
+  Chef::Log.warn("*** 'organizations' is missing from the url!")
 end
 
-log '*** End of recipe'
+Chef::Log.warn('*** End of recipe')
 
+directory '/tmp/sbsa' do
+	action :create
+end
