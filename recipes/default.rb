@@ -21,7 +21,7 @@ service 'iptables' do
 end
 
 package "tree" do
-	action :upgrade
+  action :upgrade
 end
 
 directory "/tmp/test" do
