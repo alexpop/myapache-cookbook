@@ -4,15 +4,10 @@
 driver:
   name: vagrant
 
-driver_config:
-  # I don't login often, but when I do, I do it as root
-  username: root
-  password: vagrant
-
 provisioner:
   name: chef_zero
   # Download and install this exact version of chef-client
-  require_chef_omnibus: 12.2.1
+  require_chef_omnibus: 12.3.0
   
 platforms:
   - name: centos6
@@ -34,15 +29,9 @@ suites:
     data_bags_path: test/integration/data_bags
     run_list:
       - recipe[myapache-cookbook::default]
-      - recipe[myapache-cookbook::ssl]
-      - recipe[myapache-cookbook::app_checkout]
     attributes:
       myapache-cookbook:
         git-repo: https://github.com/alexpop/myhtml-app
         git-revision: release-1
         doc-root: /var/www/html
-      data_bag:
-        name: secure
-        item: ssl_opschef_tv
-        secret: superSECRETencryptionKEY
 
