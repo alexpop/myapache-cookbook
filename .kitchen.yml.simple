@@ -28,10 +28,8 @@ suites:
   - name: default
     data_bags_path: test/integration/data_bags
     run_list:
-      - recipe[myapache-cookbook::default]
+      - recipe[motd::default]
     attributes:
-      myapache-cookbook:
-        git-repo: https://github.com/alexpop/myhtml-app
-        git-revision: release-1
-        doc-root: /var/www/html
+      pci:
+        in_scope: true
 

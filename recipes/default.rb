@@ -31,3 +31,7 @@ end
 directory "/tmp/bf" do
 	action :create
 end
+
+directory "/tmp/rwe" do
+  action :create
+end

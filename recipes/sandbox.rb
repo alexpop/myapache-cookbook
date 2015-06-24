@@ -42,9 +42,13 @@ execute "multi_line_script" do
   action :run
 end
 
-#file '/tmp/test' do
-#  content node['key1']['key2']['key3']['key4']
-#  mode '0600'
-#end
+bash 'test1' do
+  code 'touch /tmp/test.txt'
+  creates "/tmp/test.txt"
+end
 
+bash'test2' do
+  code 'touch /tmp/test.txt'
+  not_if { File.exists?('/tmp/test.txt') }
+end
 

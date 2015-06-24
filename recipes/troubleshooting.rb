@@ -29,6 +29,3 @@ end
 
 Chef::Log.warn('*** End of recipe')
 
-directory '/tmp/sbsa' do
-	action :create
-end
