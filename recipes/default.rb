@@ -21,17 +21,10 @@ service 'iptables' do
 end
 
 package "tree" do
-  action :upgrade
+  action :install
 end
 
-directory "/tmp/test" do
-  action :create
-end
-
-directory "/tmp/bf" do
-	action :create
-end
-
-directory "/tmp/rwe" do
-  action :create
+execute 'testing-info-stdout' do
+  command 'ls -la /etc/chef/'
+  action :run
 end

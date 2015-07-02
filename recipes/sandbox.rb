@@ -30,25 +30,16 @@ Chef::Log.warn('*** End of recipe')
 
 execute "multi_line_script" do
   command <<-EOH
-    set -x
-    date > /tmp/date.txt
     whoami
-    sleep 4
-    pwd
-    date >> /tmp/date.txt
+    ls /etc
   EOH
-  timeout 10
-	creates '/tmp/date.txt'
   action :run
 end
 
 bash 'test1' do
-  code 'touch /tmp/test.txt'
-  creates "/tmp/test.txt"
+  code 'ls /tmp'
+  action :run
 end
 
-bash'test2' do
-  code 'touch /tmp/test.txt'
-  not_if { File.exists?('/tmp/test.txt') }
-end
+
 
