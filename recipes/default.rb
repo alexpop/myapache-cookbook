@@ -24,7 +24,3 @@ package "tree" do
   action :install
 end
 
-execute 'testing-info-stdout' do
-  command 'ls -la /etc/chef/'
-  action :run
-end

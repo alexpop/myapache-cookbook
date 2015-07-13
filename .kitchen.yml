@@ -42,7 +42,7 @@ suites:
       - recipe[myapache-cookbook::ssl]
       - recipe[myapache-cookbook::app_checkout]
       - recipe[myapache-cookbook::audit_recipe]
-      - recipe[myapache-cookbook::sandbox]
+#      - recipe[myapache-cookbook::sandbox]
 #      - recipe[myapache-cookbook::troubleshooting]
     attributes:
       myapache-cookbook:
