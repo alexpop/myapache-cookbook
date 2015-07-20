@@ -41,6 +41,10 @@ control_group "System Audit" do
   describe command(iptables_command) do
     its(:stdout) { should_not match /^iptables.+:on/ }
   end
+
+  describe file('/var/log/spooler') do
+    it { should be_file }
+  end
 end
 
 

@@ -12,7 +12,7 @@
 
 Chef::Log.warn "*** Should show on -l warn"
 
-# Find all string in the array that contain
+# Find all strings in the array that contain
 # 'site_ruby/' without a '/' after that
 site_ruby_paths = $LOAD_PATH.grep(/site_ruby\/[^\/]+$/)
 if (site_ruby_paths.empty?)
@@ -26,7 +26,6 @@ if (Chef::Config[:chef_server_url] !~ /\/organizations\//)
   Chef::Log.warn("*** 'organizations' is missing from the url!!!")
 end
 
-Chef::Log.warn('*** End of recipe')
 
 execute "multi_line_script" do
   command <<-EOH
@@ -37,9 +36,11 @@ execute "multi_line_script" do
 end
 
 bash 'test1' do
-  code 'ls /tmp'
-  action :run
+  code 'touch /tmp/test.txt'
+  creates "/tmp/test.txt"
 end
 
-
-
+bash 'test2' do
+  code 'touch /tmp/test.txt'
+  not_if { File.exists?('/tmp/test.txt') }
+end

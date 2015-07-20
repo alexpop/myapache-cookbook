@@ -4,7 +4,7 @@ driver:
   #gui: true
   # Mount local /Users/apop/chef-kits folder as /mnt/share on the VM
   synced_folders:
-  - ["/Users/apop/chef-kits", "/mnt/share", "disabled: false"]
+  - ['~/chef-kits', '/mnt/share', 'disabled: false']
   customize:
     cpus: 1
     memory: 1024
@@ -17,7 +17,7 @@ driver_config:
 provisioner:
   name: chef_zero
   # Install this exact version of chef-client
-  require_chef_omnibus: 12.4.0
+  require_chef_omnibus: 12.4.1
   # Use the local chef-client rpm specified in install_chef_rpm.sh:
   chef_omnibus_url: file:///mnt/share/install_chef_rpm.sh
   client_rb:
@@ -28,12 +28,12 @@ provisioner:
 platforms:
   - name: centos6
     driver:
-      box: "opscode-centos-6.6"
+      box: 'chef/centos-6.6'
       # see available box urls here: https://opscode-vm-bento.s3.amazonaws.com/
       box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.6_chef-provisionerless.box
       # Use the default host-only network along the NAT one. Makes life easier from a networking perspective
       network:
-      - ["private_network", {ip: "192.168.56.40"}]
+      - ['private_network', {ip: '192.168.56.40'}]
 
 suites:
   - name: default
