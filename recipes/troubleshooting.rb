@@ -5,6 +5,10 @@
 # Copyright 2015, Great Websites Inc
 #
 
+require 'pp'
+# debug a node attribute to see where is the value set, etc
+pp node.debug_value('gem', 'ap_path')
+
 # Avoiding 'kitchen converge' runs
 if(ENV['SUDO_COMMAND'] =~ /chef-client --local-mode/)
   Chef::Log.warn("Detected kitchen run, skipping 'binding.pry'")
