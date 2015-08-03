@@ -38,6 +38,7 @@ file '/etc/ssl/certificate.key' do
   notifies :reload, "service[httpd]"
 end
 
+expire_days=40
 # Only executed when the cert file is created/updated
 ruby_block "ssl_script" do
   block do
@@ -58,4 +59,12 @@ end
 service "httpd" do
   supports :status => true, :restart => true, :reload => true
   action [:enable, :start]
+end
+
+control_group "Apache" do
+  control "SSL" do
+    it "should have more than 30 days before expiring" do
+      expect(expire_days).to be > 3000000
+    end
+  end
 end

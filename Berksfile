@@ -6,7 +6,7 @@ source 'https://supermarket.chef.io'
 metadata
 
 # Use a dependent cookbook from the parent folder
-#cookbook 'mydns-cookbook', path: '../mydns-cookbook'
+#cookbook 'pci', path: '../pci'
 
 # Specify dependent cookbook. Useful when you don't have a local ./metadata.rb
 #cookbook 'java'

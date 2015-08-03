@@ -5,6 +5,13 @@
 # Copyright 2015, Great Websites Inc
 #
 
+# Add local mode command to history in case it needs to be run manually after login
+file '/root/.bash_history' do
+  content '/opt/chef/bin/chef-client --local-mode --config /tmp/kitchen/client.rb --log_level auto --force-formatter --no-color --json-attributes /tmp/kitchen/dna.json --chef-zero-port 8889'
+  mode '0600'
+  action :create_if_missing
+end
+
 require 'pp'
 # debug a node attribute to see where is the value set, etc
 pp node.debug_value('gem', 'ap_path')

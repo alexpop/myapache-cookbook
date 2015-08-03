@@ -12,6 +12,7 @@ recipe 'myapache-cookbook::ssl', 'Deploy SSL cert from data bag'
 recipe 'myapache-cookbook::sandbox', 'Playing with fire'
 
 depends 'git'
+depends 'httpd'
 
 %w{ redhat centos fedora oracle }.each do |os|
   supports os

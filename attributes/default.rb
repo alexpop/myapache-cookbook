@@ -19,7 +19,8 @@ default['data_bag']['secret'] = 'OVERRIDE-ME'
 # For 'binding.pry' troubleshooting
 default['gem']['ap_path'] = nil
 
-
+# control_group tests related flags
+default['myapache-cookbook']['check']['system_requirements'] = true
 
 
 

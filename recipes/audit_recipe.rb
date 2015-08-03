@@ -22,7 +22,7 @@ control_group "Apache Audit" do
     end
   end
 
-	describe file('/etc/passwd') do
+  describe file('/etc/passwd') do
     it { should contain 'apache' }
   end
  
