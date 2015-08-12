@@ -20,9 +20,9 @@ pp node.debug_value('gem', 'ap_path')
 if(ENV['SUDO_COMMAND'] =~ /chef-client --local-mode/)
   Chef::Log.warn("Detected kitchen run, skipping 'binding.pry'")
 else
-  if (node['gem'] && node['gem']['ap_path'])
+  if (node['myapache-cookbook']['ap_path'])
     chef_gem 'awesome_print' do
-      source node['gem']['ap_path']
+      source node['myapache-cookbook']['ap_path']
       compile_time true
     end
     require 'awesome_print'

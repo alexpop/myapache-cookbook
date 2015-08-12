@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: myapache-cookbook
-# Recipe:: audit_recipe
+# Recipe:: audit_tests
 #
 
 control_group "Apache Audit" do

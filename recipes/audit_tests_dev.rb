@@ -1,6 +1,6 @@
 #
 # Cookbook Name:: myapache-cookbook
-# Recipe:: audit_recipe_dev
+# Recipe:: audit_tests_dev
 #
 
 # Attribute to prevent System Requirements checks

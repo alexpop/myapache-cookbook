@@ -11,7 +11,7 @@ describe 'myapache-cookbook::default' do
     expect(chef_run).to install_package 'tree'
   end
 
-  it 'Includes the linux recipe' do
+  it 'Installs/Upgrades the httpd package' do
     expect(chef_run).to upgrade_package 'httpd'
   end
 end
