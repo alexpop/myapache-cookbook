@@ -3,6 +3,10 @@
 # Recipe:: audit_tests
 #
 
+# TO-ADD
+# System Requirements tests
+# SSL days until expire check
+
 control_group "Apache Audit" do
   control "httpd" do
     it "should be installed" do
