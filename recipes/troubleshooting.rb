@@ -13,8 +13,8 @@ file '/root/.bash_history' do
 end
 
 require 'pp'
-# debug a node attribute to see where is the value set, etc
-pp node.debug_value('gem', 'ap_path')
+# debug a node attribute(ie: node['myapache-cookbook']['ap_path']) to see where is the value set, etc
+pp node.debug_value('myapache-cookbook', 'ap_path')
 
 # Avoiding 'kitchen converge' runs
 if(ENV['SUDO_COMMAND'] =~ /chef-client --local-mode/)
