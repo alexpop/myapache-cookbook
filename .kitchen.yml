@@ -37,11 +37,10 @@ platforms:
 suites:
   - name: default
     run_list:
-#      - recipe[myapache-cookbook::default]
-#      - recipe[myapache-cookbook::default2]
-      - recipe[myapache-cookbook::ssl]
-#      - recipe[myapache-cookbook::app_checkout]
-#      - recipe[myapache-cookbook::audit_tests]
+      - recipe[myapache-cookbook::default]
+#      - recipe[myapache-cookbook::ssl]
+      - recipe[myapache-cookbook::app_checkout]
+      - recipe[myapache-cookbook::audit_tests]
 #      - recipe[myapache-cookbook::troubleshooting]
 #      - recipe[myapache-cookbook::audit_tests_dev]
 #      - recipe[myapache-cookbook::sandbox]
