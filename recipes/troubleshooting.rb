@@ -16,10 +16,8 @@ require 'pp'
 # debug a node attribute(ie: node['myapache-cookbook']['ap_path']) to see where is the value set, etc
 pp node.debug_value('myapache-cookbook', 'ap_path')
 
-# Avoiding 'kitchen converge' runs
-if(ENV['SUDO_COMMAND'] =~ /chef-client --local-mode/)
-  Chef::Log.warn("Detected kitchen run, skipping 'binding.pry'")
-else
+# only enter here if chef-client is run from /tmp
+if(ENV['PWD'] == '/tmp')
   if (node['myapache-cookbook']['ap_path'])
     chef_gem 'awesome_print' do
       source node['myapache-cookbook']['ap_path']
