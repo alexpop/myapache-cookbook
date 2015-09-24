@@ -32,4 +32,5 @@ suites:
     attributes:
       pci:
         in_scope: true
-
+      motd:
+        company: 'CHEF'

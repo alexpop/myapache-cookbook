@@ -7,6 +7,9 @@
 # System Requirements tests
 # SSL days until expire check
 
+# The only way node attributes can be used in tests
+myplatform=node['platform']
+
 control_group "Apache Audit" do
   control "httpd" do
     it "should be installed" do
@@ -14,11 +17,11 @@ control_group "Apache Audit" do
     end
 
     it "should be running" do
-      expect(service("ntpd")).to be_running
+      expect(service("httpd")).to be_running
     end
 
     it "should be enabled" do
-      expect(service("ntpd")).to be_enabled
+      expect(service("httpd")).to be_enabled
     end
 
     it "should be listening on port 80" do
@@ -48,6 +51,10 @@ control_group "System Audit" do
 
   describe file('/var/log/spooler') do
     it { should be_file }
+  end
+
+  it 'Platform should be centos' do
+    expect(myplatform).to eq 'centos'
   end
 end
 
