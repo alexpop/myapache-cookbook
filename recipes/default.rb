@@ -6,7 +6,7 @@
 #
 # All rights reserved - Do Not Redistribute
 
-log "*** Time in epoch is: #{lib_epoch}"
+Chef::Log.warn "*** Time in epoch is: #{lib_epoch}"
 
 package "httpd" do
   action :upgrade
@@ -23,4 +23,3 @@ end
 package "tree" do
   action :install
 end
-

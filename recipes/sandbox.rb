@@ -44,3 +44,4 @@ bash 'test2' do
   code 'touch /tmp/test.txt'
   not_if { File.exists?('/tmp/test.txt') }
 end
+

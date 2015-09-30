@@ -21,3 +21,6 @@ default['myapache-cookbook']['ap_path'] = nil
 
 # control_group tests related flags
 default['myapache-cookbook']['check']['system_requirements'] = true
+
+# Attribute used by the reason recipe for Analytics integration
+default['myapache-cookbook']['reason'] = 'jenkins run 123'
