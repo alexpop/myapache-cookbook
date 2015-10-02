@@ -28,6 +28,7 @@ file '/etc/ssl/certificate.crt' do
   sensitive true
   action :create
   notifies :reload, "service[httpd]"
+  notifies :run, "ruby_block[ssl_script]"
 end
 
 file '/etc/ssl/certificate.key' do
@@ -38,22 +39,16 @@ file '/etc/ssl/certificate.key' do
   notifies :reload, "service[httpd]"
 end
 
-expire_days=40
-# Only executed when the cert file is created/updated
+# Executed in the compile phase and will be overridden by `ruby_block[ssl_script]` if the cert is changed during converge
+# get_expire_days is a helper method defined in `libraries/helpers.rb`
+node.set['ssl_cert']['expire_days'] = get_expire_days('/etc/ssl/certificate.crt')
+# Only executed when the cert file is created/updated during the converge phase
 ruby_block "ssl_script" do
   block do
-    cert = OpenSSL::X509::Certificate.new(File.read('/etc/ssl/certificate.crt'))
-    expire_days = ((cert.not_after-Time.now)/86400).to_i
-    # Set attributes to easily search nodes for SSL expiration dates
-    node.set['ssl_cert']['not_after'] = cert.not_after
-    node.set['ssl_cert']['expire_days'] = expire_days
-    # Fail the recipe to prevent certificate expiration issues
-    if expire_days<=30
-      raise "Only SSL certificates above 30 days from expiration are allowed. "+
-            "Number of days left: #{expire_days}. Negative number indicates expired certificate"
-    end
+    # Set normal attribute to easily search nodes for the SSL expiration date
+    node.set['ssl_cert']['expire_days'] = get_expire_days('/etc/ssl/certificate.crt')
   end
-  action :run
+  action :nothing
 end
 
 service "httpd" do
@@ -61,10 +56,11 @@ service "httpd" do
   action [:enable, :start]
 end
 
+expire_days = node['ssl_cert']['expire_days']
 control_group "Apache" do
   control "SSL" do
     it "should have more than 30 days before expiring" do
-      expect(expire_days).to be > 3000000
+      expect(expire_days).to be > 30
     end
   end
 end
