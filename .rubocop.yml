@@ -3,5 +3,5 @@ LineLength:
 
 AllCops:
   Exclude:
-    - 'test/integration/*'
-    - 'recipes/audit*'
+    - test/integration/**/*
+    - recipes/audit*
