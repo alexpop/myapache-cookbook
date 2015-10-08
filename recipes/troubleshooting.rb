@@ -28,6 +28,6 @@ if (ENV['PWD'] == '/tmp')
   binding.pry
 end
 
-if Chef::Config[:chef_server_url] !~ %r(/organizations/)
+if Chef::Config[:chef_server_url] !~ %r{/organizations/}
   Chef::Log.warn('*** "organizations" is missing from the url!')
 end

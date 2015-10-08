@@ -17,7 +17,7 @@ else
   Chef::Log.warn "*** site_ruby is at: #{site_ruby_path}"
 end
 
-if Chef::Config[:chef_server_url] !~ %r(/organizations/)
+if Chef::Config[:chef_server_url] !~ %r{/organizations/}
   Chef::Log.warn('*** "organizations" is missing from the url!!!')
 end
 

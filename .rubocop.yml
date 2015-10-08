@@ -1,9 +1,7 @@
 LineLength:
   Max: 200
 
-Style/FileName:
-  Enabled: false
-
 AllCops:
   Exclude:
     - 'test/integration/*'
+    - 'recipes/audit*'
