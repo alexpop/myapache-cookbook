@@ -12,11 +12,11 @@ ruby_block 'before_breakpoint1' do
   end
 end
 
-log "*** Before breakpoint1"
+log '*** Before breakpoint1'
 
-breakpoint "breakpoint1"
+breakpoint 'breakpoint1'
 
-log "*** After breakpoint1"
+log '*** After breakpoint1'
 
 ruby_block 'after_breakpoint1' do
   block do
@@ -24,7 +24,7 @@ ruby_block 'after_breakpoint1' do
   end
 end
 
-breakpoint "second_breakpoint"
+breakpoint 'second_breakpoint'
 
 # chef-shell -z
 # recipe_mode

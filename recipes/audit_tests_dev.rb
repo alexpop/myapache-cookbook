@@ -15,23 +15,23 @@ if node['myapache-cookbook']['check']['system_requirements']
   memory_free_mb = node['memory']['free'].gsub(/kB$/i, '').to_i / 1024
 
   # Define the CPU, Memory and Disk tests
-  control_group "System Requirements" do
-    control "CPU" do
-      it "should have at least two cores" do
+  control_group 'System Requirements' do
+    control 'CPU' do
+      it 'should have at least two cores' do
         expect(cpu_total).to be >= 1
       end
     end
-    control "Memory" do
-      it "should be at least 400MB free" do
+    control 'Memory' do
+      it 'should be at least 400MB free' do
         expect(memory_free_mb).to be >= 400
       end
     end
-    control "Disk" do
-      it "should have at least 1GB available in /opt" do
+    control 'Disk' do
+      it 'should have at least 1GB available in /opt' do
         expect(disk_free_mb).to be >= 1024
       end
     end
   end
 else
-  Chef::Log.info("*** Skipping system requirements checks")
+  Chef::Log.info('*** Skipping system requirements checks')
 end

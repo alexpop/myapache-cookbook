@@ -23,7 +23,7 @@ ruby_block 'retrieve_app_version' do
     node.set['myapache-cookbook']['app-ver'] = version
   end
   only_if { File.exist?("#{node['myapache-cookbook']['doc-root']}/VERSION.txt") }
-  notifies :create, 'file[/tmp/app-ver.txt]'  
+  notifies :create, 'file[/tmp/app-ver.txt]'
   action :nothing
 end
 
@@ -44,4 +44,3 @@ search('files', '*:*').each do |file|
     action :create
   end
 end
-

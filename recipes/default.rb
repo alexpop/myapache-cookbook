@@ -4,22 +4,19 @@
 #
 # Copyright 2014, Great Blogs Ltd
 #
-# All rights reserved - Do Not Redistribute
 
-Chef::Log.warn "*** Time in epoch is: #{lib_epoch}"
-
-package "httpd" do
+# Use the `package` resource to install or upgrade Apache. This allows a repo
+# strategy to incluence the package versions available per environment and promotion between environments
+package 'httpd' do
   action :upgrade
 end
 
-service "httpd" do
+# Use the `service` resource
+service 'httpd' do
   action [:enable, :start]
 end
 
+# Disabling iptables to showcase audit mode
 service 'iptables' do
   action [:disable, :stop]
-end
-
-package "tree" do
-  action :install
 end
