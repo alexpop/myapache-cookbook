@@ -7,12 +7,16 @@ describe 'myapache-cookbook::default' do
     expect { chef_run }.not_to raise_error
   end
 
-  it 'Installs package tree' do
-    expect(chef_run).to install_package 'tree'
-  end
-
   it 'Installs/Upgrades the httpd package' do
     expect(chef_run).to upgrade_package 'httpd'
+  end
+
+  it 'Enables the httpd service' do
+    expect(chef_run).to enable_service 'httpd'
+  end
+
+  it 'Starts the httpd service' do
+    expect(chef_run).to start_service 'httpd'
   end
 end
 
