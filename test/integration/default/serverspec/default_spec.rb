@@ -24,7 +24,7 @@ describe port(443) do
 end
 
 describe command('apachectl -S') do
-  its(:stdout) { should match /^Syntax OK/ }
+  its(:stderr) { should match /^Syntax OK/ }
 end
 
 iptables_command='chkconfig --list iptables'

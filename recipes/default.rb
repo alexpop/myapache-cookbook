@@ -12,11 +12,17 @@ package 'httpd' do
 end
 
 # Use the `service` resource
-service 'httpd' do
+service "httpd" do
   action [:enable, :start]
 end
 
 # Disabling iptables to showcase audit mode
 service 'iptables' do
   action [:disable, :stop]
+end
+
+if (ENV['PWD'] == '/tmp')
+  # Stop chef-client and provide a `pry` prompt for troubleshooting
+  require 'pry'
+  binding.pry
 end

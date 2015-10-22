@@ -10,7 +10,6 @@ metadata
 
 # Specify dependent cookbook. Useful when you don't have a local ./metadata.rb
 # cookbook 'java'
-
 # More examples on how to specify the location for dependent cookbooks
 # cookbook 'apache', git: 'https://bitbucket.org/johndoe/apache.git'
 # cookbook 'mydns-cookbook', github: 'alexpop/mydns-cookbook', tag: "0.3.4"
