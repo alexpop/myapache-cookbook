@@ -12,7 +12,7 @@ package 'httpd' do
 end
 
 # Use the `service` resource
-service "httpd" do
+service 'httpd' do
   action [:enable, :start]
 end
 
