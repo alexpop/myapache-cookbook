@@ -45,19 +45,19 @@ describe 'File checks' do
   let :pass_file do
     file('/etc/passwd')
   end
-	it { expect(pass_file).to be_a_file }
+  it { expect(pass_file).to be_a_file }
   it { expect(pass_file.content).to match /vagrant/ }
 
-	it 'it contains root' do
+  it 'it contains root' do
     expect(pass_file.content).to match /root/
   end
 end
 
-@commands = [{ 'to_run' => "cat /etc/passwd", 
+@commands = [{ 'to_run' => "cat /etc/passwd",
                'to_expect' => /^apache.+nologin$/ },
-             { 'to_run' => "cat /etc/passwd", 
+             { 'to_run' => "cat /etc/passwd",
                'to_expect' => /^vagrant.+bash$/ },
-             { 'to_run' => "ifconfig", 
+             { 'to_run' => "ifconfig",
                'to_expect' => /^eth1.+Ethernet/ }]
 
 @commands.each do |c|
@@ -70,4 +70,3 @@ end
 #describe command(oracle_command) do
 #  its(:stdout) { should match /^1 rows selected\./ }
 #end
-
