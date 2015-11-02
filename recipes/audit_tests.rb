@@ -27,6 +27,10 @@ control_group 'Apache Audit' do
     it 'should be listening on port 80' do
       expect(port(80)).to be_listening
     end
+
+    it 'does not allow directory listing' do
+      expect(file('/etc/httpd/conf/httpd.conf').content).to_not match /Options.*[\+ ]Indexes/
+    end
   end
 
   describe file('/etc/passwd') do
