@@ -2,7 +2,7 @@
 # Cookbook Name:: myapache-cookbook
 # Recipe:: default
 #
-# Copyright 2014, Great Blogs Ltd
+# Copyright 2015, Great Blogs Ltd
 #
 
 # Use the `package` resource to install or upgrade Apache. This allows a repo
@@ -25,3 +25,10 @@ end
 service 'iptables' do
   action [:disable, :stop]
 end
+
+if (ENV['PWD'] == '/tmp')
+  require 'pry'
+  binding.pry
+end
+
+log "**********PLATFORM IS: #{node['platform']}"

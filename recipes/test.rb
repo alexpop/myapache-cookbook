@@ -4,6 +4,7 @@ file '/tmp/something' do
   action :create
 end
 
-package "rubo" do
+package 'httpd' do
+  version "2.3.9"
   action :install
 end

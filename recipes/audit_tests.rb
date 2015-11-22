@@ -29,7 +29,7 @@ control_group 'Apache Audit' do
     end
 
     it 'does not allow directory listing' do
-      expect(file('/etc/httpd/conf/httpd.conf').content).to_not match /Options.*[\+ ]Indexes/
+      expect(file('/etc/httpd/conf/httpd.conf').content).to_not match /^\s+Options.*[\+\s]Indexes/
     end
   end
 
