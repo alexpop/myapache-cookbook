@@ -25,11 +25,14 @@ provisioner:
     # Use :enabled, :disabled or :audit_only to run the ServerSpec tests in the recipes
     audit_mode: :enabled
 
+verifier:
+  name: inspec
+  sudo: true
+
 platforms:
   - name: centos6
     driver:
-      box: 'chef/centos-6.6'
-      #box: 'chef/centos-7.1'
+      box: 'centos-6.6'
       # see available box urls here: https://opscode-vm-bento.s3.amazonaws.com/
       box_url: https://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.6_chef-provisionerless.box
       # Use the default host-only network along the NAT one. Makes life easier from a networking perspective
@@ -43,7 +46,7 @@ suites:
       - recipe[myapache-cookbook::default]
       - recipe[myapache-cookbook::app_checkout]
 #      - recipe[myapache-cookbook::ssl]
-      - recipe[myapache-cookbook::audit_tests]
+#      - recipe[myapache-cookbook::audit_tests]
       - recipe[myapache-cookbook::troubleshooting]
 #      - recipe[myapache-cookbook::audit_tests_dev]
 #      - recipe[myapache-cookbook::sandbox]
