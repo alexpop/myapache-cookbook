@@ -7,7 +7,6 @@
 
 execute 'name' do
   command 'command'
-  missinginaction 'asdf'
   action :run
 end
 

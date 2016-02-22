@@ -20,13 +20,19 @@ end
 
 # Only enter here if chef-client is run from /tmp
 # This prevents scheduled runs from hanging in `binding.pry`
-if (ENV['PWD'] == '/tmp')
-  # Stop chef-client and provide a `pry` prompt for troubleshooting
-  require 'pry'
-  binding.pry
-  # gem 'pry-byebug' can be used to step through
-end
+
 
 if Chef::Config[:chef_server_url] !~ %r{/organizations/}
   Chef::Log.warn('*** "organizations" is missing from the url!')
+end
+
+file '/tmp/aws.sh' do
+  sensitive true
+  content <<-EOH
+    export AWS_ACCESS_KEY_ID='#{node['myapache-cookbook']['ap_path']}'
+    export AWS_SECRET_ACCESS_KEY='#{node['myapache-cookbook']['ap_path']}'
+  EOH
+  mode '0400'
+  owner 'root'
+  group 'root'
 end
