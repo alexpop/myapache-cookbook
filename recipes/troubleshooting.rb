@@ -25,14 +25,3 @@ end
 if Chef::Config[:chef_server_url] !~ %r{/organizations/}
   Chef::Log.warn('*** "organizations" is missing from the url!')
 end
-
-file '/tmp/aws.sh' do
-  sensitive true
-  content <<-EOH
-    export AWS_ACCESS_KEY_ID='#{node['myapache-cookbook']['ap_path']}'
-    export AWS_SECRET_ACCESS_KEY='#{node['myapache-cookbook']['ap_path']}'
-  EOH
-  mode '0400'
-  owner 'root'
-  group 'root'
-end
