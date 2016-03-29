@@ -12,6 +12,7 @@ recipe 'myapache-cookbook::ssl', 'Deploy SSL cert from data bag'
 recipe 'myapache-cookbook::sandbox', 'Playing with fire'
 
 depends 'git'
+depends 'chef-ingredient', '>= 0.13.1'
 
 %w(redhat centos fedora oracle).each do |os|
   supports os

@@ -43,11 +43,13 @@ suites:
   - name: mysuite
     data_bags_path: 'test/integration/data_bags'
     run_list:
-      - recipe[myapache-cookbook::default]
+#      - recipe[myapache-cookbook::default]
 #      - recipe[myapache-cookbook::app_checkout]
 #      - recipe[myapache-cookbook::ssl]
 #      - recipe[myapache-cookbook::audit_tests]
       - recipe[myapache-cookbook::troubleshooting]
+#      - recipe[myapache-cookbook::audit_tests_dev]
+#      - recipe[myapache-cookbook::sandbox]
     attributes:
       myapache-cookbook:
         ap_path: /mnt/share/gems/awesome_print-1.6.1.gem
@@ -58,3 +60,5 @@ suites:
         name: secure
         item: ssl_opschef_tv
         secret: superSECRETencryptionKEY
+      artifactory_username: ENV['ARTIFACTORY_USERNAME']
+      artifactory_password: ENV['ARTIFACTORY_PASSWORD']
