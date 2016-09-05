@@ -59,14 +59,16 @@ suites:
         name: secure
         item: ssl_opschef_tv
         secret: superSECRETencryptionKEY
-      artifactory_username: ENV['ARTIFACTORY_USERNAME']
-      artifactory_password: ENV['ARTIFACTORY_PASSWORD']
+      artifactory_username: <%= ENV['ARTIFACTORY_USERNAME'] %>
+      artifactory_password: <%= ENV['ARTIFACTORY_PASSWORD'] %>
       audit:
         collector: 'chef-compliance'
-        server: 'https://ap-cc6.opschef.tv/api/'
+#        server: 'https://ap-cc6.opschef.tv/api'
+        server: 'http://10.0.2.2:2134'
+        inspec_version: 0.32.0
         insecure: true
         owner: admin
-        refresh_token: ENV['COMPLIANCE_REFRESH_TOKEN']
+        refresh_token: <%= ENV['COMPLIANCE_REFRESH_TOKEN'] %>
         profiles:
           base/apache: true
-          admin/ssl: true
+#          admin/ssl: true
