@@ -5,6 +5,9 @@ source 'https://supermarket.chef.io'
 # Look for dependencies in ./metadata.rb
 metadata
 
+#cookbook 'audit', github: 'chef-cookbooks/audit', branch: 'ap/blob-fix'
+#cookbook 'audit', path: '../audit'
+
 # Use a dependent cookbook from the parent folder
 # cookbook 'pci', path: '../pci'
 

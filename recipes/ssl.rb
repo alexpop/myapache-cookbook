@@ -5,11 +5,6 @@
 # Copyright 2015, Great Websites Inc
 #
 
-execute 'name' do
-  command 'command'
-  action :run
-end
-
 # array of packages supported only on chef-clinet 12.1.0 or above
 package %w(mod_ssl openssl) do
   action :upgrade
