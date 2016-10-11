@@ -1,6 +1,7 @@
 # Kitche+Vagrant doc: https://github.com/test-kitchen/kitchen-vagrant/blob/master/README.md
 driver:
   name: vagrant
+  vm_hostname: myapache
   #gui: true
   # Mount local /Users/apop/chef-kits folder as /mnt/share on the VM
   synced_folders:
@@ -16,8 +17,9 @@ driver_config:
 
 provisioner:
   name: chef_zero
+  log_level: info
   # Install this exact version of chef-client
-  require_chef_omnibus: 12.13.30
+  require_chef_omnibus: 12.14.89
   # Use the local chef-client rpm specified in install_chef.sh:
 #  chef_omnibus_url: http://192.168.56.1/kits/install_chef_rpm.sh
 #  chef_omnibus_url: file:///mnt/share/install_chef_rpm.sh
@@ -38,6 +40,7 @@ platforms:
       # Use the default host-only network along the NAT one. Makes life easier from a networking perspective
       network:
       - ['private_network', {ip: '192.168.56.40'}]
+      - ['private_network', {ip: '192.168.33.40'}]
 
 suites:
   - name: mysuite
@@ -48,10 +51,9 @@ suites:
       - recipe[myapache-cookbook::ssl]
 #      - recipe[myapache-cookbook::troubleshooting]
 #      - recipe[myapache-cookbook::sandbox]
-      - recipe[audit::default]
+#      - recipe[audit::default]
     attributes:
       myapache-cookbook:
-        ap_path: /mnt/share/gems/awesome_print-1.6.1.gem
         git-repo: https://github.com/alexpop/myhtml-app
         git-revision: release-1
         doc-root: /var/www/html
@@ -59,16 +61,18 @@ suites:
         name: secure
         item: ssl_opschef_tv
         secret: superSECRETencryptionKEY
-      artifactory_username: <%= ENV['ARTIFACTORY_USERNAME'] %>
-      artifactory_password: <%= ENV['ARTIFACTORY_PASSWORD'] %>
       audit:
         collector: 'chef-compliance'
-#        server: 'https://ap-cc6.opschef.tv/api'
-        server: 'http://10.0.2.2:2134'
-        inspec_version: 0.32.0
+        server: 'https://ap-cc6.opschef.tv/api'
+#        server: 'http://10.0.2.2:2134'
+        inspec_version: 1.1.0
         insecure: true
         owner: admin
-        refresh_token: <%= ENV['COMPLIANCE_REFRESH_TOKEN'] %>
+        # testing API tokens
+        refresh_token: '1/uSl7I6uFl9ycxqAz1YQChZvOMOKD589Xt6JKpmkL-wtrAIDsb2AK1VHgRQRYgCcb9oKPQikpT0ao191ymBUHSw=='
+        #token: 'eyJhbGciOiJSUzI1NiIsImtpZCI6InZ4X1RfLUpFc19IeXBiREw4ZVdmRmo3aW5WZTFyU2wxOTFzNVpPbllCRlNoSEpTRE5CZW9ELW9TMVdtRU9jcmpFcXRTY25SZVJPMUlPaW9kOFNVY0xrWUJ1V2ppNHVXQ1hYSF9PZ1lpakx1SlZGbzRXRUdtQVFtUU1FaUM5cnpkSmZ6bmhESzZRa1lyeXg4TkVXUnJUeDZDaEZaTm1DampmR1pQWFhsRmppWFl1cFFaRFc5RzRlTTlKeGRLbFllMGlsSm1tUmtKX3Z4MFZGWFM5U2dnYlNBMkJ3TmRMY0hNLVlPT3gycmNkNFNvMFVpUnZmN0E0NEQzZUY0SHRUeElydFNFYnZqb3p6MFVZWnRRSVg1aTZfQlRwTjI5OE1jc2IxVDFvb0NsWndOazFQWm1KTDZEdEd5VHJ0WWIzRE13dGFrTmRyWUd0Z2prNGJXZnJ3bm5iUT09IiwidHlwIjoiSldUIn0.eyJhdWQiOiJKWmlrLVFjdVAxTEsybE9tTDhsMXFRd3lhemVJNlhvVWh2WW5PYjdvRnowPUBhcC1jYzYub3BzY2hlZi50diIsImNvbm5lY3Rvcl9pZCI6IkNvbXBsaWFuY2UgU2VydmVyIiwiY29ubmVjdG9yX2luZm8iOiJodHRwczovL2FwLWNjNi5vcHNjaGVmLnR2L2FwaS8iLCJjb25uZWN0b3JfdHlwZSI6ImNvbXBsaWFuY2UiLCJlbWFpbCI6ImFkbWluQGNvbXBsaWFuY2UuZmFrZSIsImVtYWlsX3ZlcmlmaWVkIjp0cnVlLCJleHAiOjEuNDc1Nzg5MjA0ZSswOSwiaWF0IjoxLjQ3NTc0NjAwNGUrMDksImlzcyI6Imh0dHBzOi8vYXAtY2M2Lm9wc2NoZWYudHYiLCJuYW1lIjoiYWRtaW4iLCJzdWIiOiJhODE0MzQyNi0zMzQ5LTRkM2MtYWYyYi1lNDYyNmNhY2QzZTQifQ.KNicUYmLurBgyHHFDiJ8y1dIM1Rw3VKaRTo_u8d1p7JP1KfFd1WcJRMrPQxszvWT8pe6YoHHwz_ZFF8fjsbeOPagnFxsqxjYlwOM2H0uzdCfYtbaJE5J3WT5p48FCyixEdojOXneKFZbUUNhp1Il5sMnnEbWq4lkhmjZBTM-VzT1k8167PTb5mYN7UacZB-7X2-bSntDckvKdjAWLZtB8FPaextlwoDrIz_JhnMqylafkbObIy4tOP4Am1wsTdJsh17mbh72gA8o08hvbB6Hj42RtjZ13kPnu3p2lhzrFDSXaBMTBd3tDbBwVgwlERE5zE9dBjtdH7kmmlSo2sg3WA'
         profiles:
-          base/apache: true
-#          admin/ssl: true
+          base/ssh: true
+          #admin/myempty: true
+#          dev-sec/ssl-benchmark:
+#            source: 'https://github.com/dev-sec/ssl-benchmark'

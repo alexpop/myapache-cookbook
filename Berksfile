@@ -5,7 +5,8 @@ source 'https://supermarket.chef.io'
 # Look for dependencies in ./metadata.rb
 metadata
 
-#cookbook 'audit', github: 'chef-cookbooks/audit', branch: 'ap/blob-fix'
+cookbook 'audit'
+# or use my local audit cookbook clone:
 #cookbook 'audit', path: '../audit'
 
 # Use a dependent cookbook from the parent folder

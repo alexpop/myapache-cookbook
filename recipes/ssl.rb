@@ -41,26 +41,16 @@ end
 
 # Executed in the compile phase and will be overridden by `ruby_block[ssl_script]` if the cert is changed during converge
 # get_expire_days is a helper method defined in `libraries/helpers.rb`
-node.set['ssl_cert']['expire_days'] = get_expire_days('/etc/ssl/certificate.crt')
+node.override['ssl_cert']['expire_days'] = get_expire_days('/etc/ssl/certificate.crt')
 # Only executed when the cert file is created/updated during the converge phase
 ruby_block 'ssl_script' do
   block do
     # Set normal attribute to easily search nodes for the SSL expiration date
-    node.set['ssl_cert']['expire_days'] = get_expire_days('/etc/ssl/certificate.crt')
+    node.override['ssl_cert']['expire_days'] = get_expire_days('/etc/ssl/certificate.crt')
   end
   action :nothing
 end
 
 service 'httpd' do
-  supports status: true, restart: true, reload: true
   action [:enable, :start]
-end
-
-expire_days = node['ssl_cert']['expire_days']
-control_group 'Apache' do
-  control 'SSL' do
-    it 'should have more than 30 days before expiring' do
-      expect(expire_days).to be > 30
-    end
-  end
 end

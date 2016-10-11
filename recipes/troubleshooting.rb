@@ -6,12 +6,11 @@
 #
 
 # Really good gem to pretty print hashes, objects, etc
-if node['myapache-cookbook']['ap_path']
+if ENV['PWD'] == '/tmp'
   require 'pp'
-  # Debug a node attribute(ie: node['myapache-cookbook']['ap_path']) to see where is the value set, etc
-  pp node.debug_value('myapache-cookbook', 'ap_path')
+  # Debug a node attribute(ie: node['myapache-cookbook']['git-repo']) to see where is the value set, etc
+  pp node.debug_value('myapache-cookbook', 'git-repo')
   chef_gem 'awesome_print' do
-    source node['myapache-cookbook']['ap_path']
     compile_time true
   end
   require 'awesome_print'
@@ -24,5 +23,3 @@ if ENV['PWD'] == '/tmp'
   require 'pry'
   binding.pry
 end
-
-
